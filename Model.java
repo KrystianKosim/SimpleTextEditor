@@ -22,7 +22,7 @@ public class Model {
             jFileChooser = new JFileChooser();
         }
             String pathToFile = currentFile;
-            int result = jFileChooser.showSaveDialog(jmiOpen);
+            int result = jFileChooser.showOpenDialog(jmiOpen);
             if (result == JFileChooser.APPROVE_OPTION) {
                 File selectedFile = jFileChooser.getSelectedFile();
                 pathToFile = selectedFile.getAbsolutePath();

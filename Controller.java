@@ -2,6 +2,10 @@ package Zajecia11;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
+
+import static java.awt.event.ActionEvent.CTRL_MASK;
 
 public class Controller {
     private View view;
@@ -48,22 +52,26 @@ public class Controller {
         /** here */
 
         JMenuItem jmiOpen = view.getJmiOpen();
-        jmiOpen.addActionListener((e ->
+        jmiOpen.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_DOWN_MASK));
+        jmiOpen.addActionListener(e ->
                 model.openFile(view, jmiOpen)
-        ));
+        );
 
         JMenuItem jmiSave = view.getJmiSave();
-        jmiSave.addActionListener((e -> {
-            model.saveFile(view);
-        }));
+        jmiSave.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK));
+        jmiSave.addActionListener(e ->
+            model.saveFile(view)
+        );
 
         JMenuItem jmiSaveAs = view.getJmiSaveAs();
-        jmiSaveAs.addActionListener((e) ->
+        jmiSaveAs.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_DOWN_MASK));
+        jmiSaveAs.addActionListener(e ->
                 model.saveAsFile(view, jmiSaveAs)
         );
 
         JMenuItem jmiExit = view.getJmiExit();
-        jmiExit.addActionListener((e) ->
+        jmiExit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.CTRL_DOWN_MASK));
+        jmiExit.addActionListener(e ->
                 System.exit(1)
         );
     }
