@@ -5,7 +5,7 @@ public enum FileStatus {
     MODIFIED("Modified"),
     SAVED("Saved");
 
-    private String statusValue;
+    private final String statusValue;
 
     FileStatus(String statusValue) {
         this.statusValue = statusValue;

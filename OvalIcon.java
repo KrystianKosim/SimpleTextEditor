@@ -4,8 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class OvalIcon implements Icon {
-    private int width;
-    private int heigh;
+    private final int width;
+    private final int heigh;
     private Color color;
 
     public OvalIcon(int width, int heigh, Color color) {
@@ -18,7 +18,7 @@ public class OvalIcon implements Icon {
     public void paintIcon(Component c, Graphics g, int x, int y) {
         Color temp = g.getColor();
         g.setColor(color);
-        g.fillOval(x,y,getIconWidth(),getIconHeight());
+        g.fillOval(x, y, getIconWidth(), getIconHeight());
         g.setColor(temp);
     }
 

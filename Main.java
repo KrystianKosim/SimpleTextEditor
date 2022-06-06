@@ -7,7 +7,7 @@ public class Main {
         String workAddress = args[0];
         String homeAddress = args[1];
         String schoolAddress = args[2];
-        Controller controller = new Controller(view,model,workAddress,homeAddress,schoolAddress);
+        Controller controller = new Controller(view, model, workAddress, homeAddress, schoolAddress);
         controller.initView();
         controller.initController();
     }

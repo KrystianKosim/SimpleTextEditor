@@ -7,7 +7,7 @@ import java.io.*;
 public class Model {
     private String currentFile;
     private FileStatus fileStatus;
-    private String name;
+    private final String name;
 
     public Model(String name) {
         this.name = name;
@@ -95,16 +95,16 @@ public class Model {
         view.getStatus().setText(fileStatus.getStatusValue());
     }
 
-    public void changeSizeOnDown(View view, int size){
+    public void changeSizeOnDown(View view, int size) {
         view.getSize().setText("" + size);
     }
 
-    public void changeBackgroundColorIconOnDown(View view, Color color){
+    public void changeBackgroundColorIconOnDown(View view, Color color) {
         view.getBackgroundColorIcon().setColor(color);
         view.getjFrame().repaint();
     }
 
-    public void changeTextColorIconOnDown(View view, Color color){
+    public void changeTextColorIconOnDown(View view, Color color) {
         view.getTextColorIcon().setColor(color);
         view.getjFrame().repaint();
     }

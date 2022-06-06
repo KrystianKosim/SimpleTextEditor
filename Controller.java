@@ -8,13 +8,13 @@ import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 
 public class Controller {
-    private View view;
-    private Model model;
-    private String workAddress;
-    private String homeAddress;
-    private String schoolAddress;
+    private final View view;
+    private final Model model;
+    private final String workAddress;
+    private final String homeAddress;
+    private final String schoolAddress;
 
-    public Controller(View view, Model model,String workAddress, String homeAddress, String schoolAddress) {
+    public Controller(View view, Model model, String workAddress, String homeAddress, String schoolAddress) {
         this.view = view;
         this.model = model;
         this.workAddress = workAddress;
