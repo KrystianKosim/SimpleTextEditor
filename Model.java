@@ -29,22 +29,23 @@ public class Model {
             pathToFile = selectedFile.getAbsolutePath();
             changeFilePathOnFrame(view);
         }
-
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(pathToFile))) {
-            view.getTextArea().setText("");
-            JTextArea textArea;
-            textArea = view.getTextArea();
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                String textToArea = textArea.getText() + '\n' + line;
-                textArea.setText(textToArea);
+        if(!pathToFile.equals("bez tytułu")) {
+            try (BufferedReader bufferedReader = new BufferedReader(new FileReader(pathToFile))) {
+                view.getTextArea().setText("");
+                JTextArea textArea;
+                textArea = view.getTextArea();
+                String line;
+                while ((line = bufferedReader.readLine()) != null) {
+                    String textToArea = textArea.getText() + '\n' + line;
+                    textArea.setText(textToArea);
+                }
+                currentFile = pathToFile;
+                fileStatus = FileStatus.SAVED;
+                changeStatus(view);
+                changeFilePathOnFrame(view);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            currentFile = pathToFile;
-            fileStatus = FileStatus.SAVED;
-            changeStatus(view);
-            changeFilePathOnFrame(view);
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 

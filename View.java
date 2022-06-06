@@ -66,12 +66,12 @@ public class View {
         southRightPanel.add(status);
 
         southLeftPanel = new JPanel();
-        textColorIcon = new OvalIcon(8, 8, Color.BLACK);
+        textColorIcon = new OvalIcon(8, 8, textArea.getForeground());
         textColor = new JLabel("fg");
         textColor.setIcon(textColorIcon);
 
         southLeftPanel.add(textColor);
-        backgroundColorIcon = new OvalIcon(8, 8, Color.WHITE);
+        backgroundColorIcon = new OvalIcon(8, 8, textArea.getBackground());
         backgroundColor = new JLabel("bg");
         backgroundColor.setIcon(backgroundColorIcon);
         southLeftPanel.add(backgroundColor);
