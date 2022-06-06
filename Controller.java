@@ -2,9 +2,6 @@ package Zajecia11;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
 
 public class Controller {
     private View view;
@@ -48,45 +45,26 @@ public class Controller {
             ));
         }
 
+        /** here */
+
         JMenuItem jmiOpen = view.getJmiOpen();
-        jmiOpen.addActionListener((e -> {
-            JFileChooser jFileChooser = new JFileChooser();
-            JTextArea textArea = view.getTextArea();
-            int result = jFileChooser.showOpenDialog(jmiOpen);
-            if (result == JFileChooser.APPROVE_OPTION) {
-                File selectedFile = jFileChooser.getSelectedFile();
-                model.setCurrentFile(selectedFile.getAbsolutePath());
-                model.changeFilePathOnFram(view);
-                model.openFile(selectedFile.getAbsolutePath(), textArea);
-            }
-        }));
+        jmiOpen.addActionListener((e ->
+                model.openFile(view, jmiOpen)
+        ));
 
         JMenuItem jmiSave = view.getJmiSave();
         jmiSave.addActionListener((e -> {
-            String text = view.getTextArea().getText();
-            try(PrintWriter printWriter = new PrintWriter(model.getCurrentFile())){
-                printWriter.print(text);
-                model.setFileStatus(FileStatus.SAVED);
-                model.changeStatus(view);
-            }catch (IOException ex){
-                ex.printStackTrace();
-            }
+            model.saveFile(view);
         }));
 
         JMenuItem jmiSaveAs = view.getJmiSaveAs();
-        jmiSaveAs.addActionListener((e) -> {
-            String text = view.getTextArea().getText();
-            JFileChooser jFileChooser = new JFileChooser();
-            int result = jFileChooser.showOpenDialog(jmiSaveAs);
-            if(result == JFileChooser.APPROVE_OPTION){
-                File selectedFile = jFileChooser.getSelectedFile();
-                model.setCurrentFile(selectedFile.getAbsolutePath());
-            }
-        });
+        jmiSaveAs.addActionListener((e) ->
+                model.saveAsFile(view, jmiSaveAs)
+        );
 
         JMenuItem jmiExit = view.getJmiExit();
         jmiExit.addActionListener((e) ->
-            System.exit(1)
+                System.exit(1)
         );
     }
 }

@@ -41,7 +41,6 @@ public class View {
         centrePanel = new JPanel();
         centrePanel.setLayout(new BorderLayout());
         textArea = getTextArea(centrePanel);
-        centrePanel.add(textArea);
 
         jmbFile = getFileBar();
 
@@ -85,8 +84,8 @@ public class View {
         JTextArea textArea = new JTextArea();
         textArea.setText("Obszar do pisania");
         JScrollPane scrollPane = new JScrollPane(textArea);
-        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         centrePanel.add(scrollPane);
         return textArea;
     }
