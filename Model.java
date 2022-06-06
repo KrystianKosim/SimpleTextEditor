@@ -1,6 +1,7 @@
 package Zajecia11;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.*;
 
 public class Model {
@@ -16,18 +17,18 @@ public class Model {
 
     public void openFile(View view, JMenuItem jmiOpen) {
         JFileChooser jFileChooser;
-        if(!currentFile.equals("bez tytułu")) {
+        if (!currentFile.equals("bez tytułu")) {
             jFileChooser = new JFileChooser(currentFile);
         } else {
             jFileChooser = new JFileChooser();
         }
-            String pathToFile = currentFile;
-            int result = jFileChooser.showOpenDialog(jmiOpen);
-            if (result == JFileChooser.APPROVE_OPTION) {
-                File selectedFile = jFileChooser.getSelectedFile();
-                pathToFile = selectedFile.getAbsolutePath();
-                changeFilePathOnFrame(view);
-            }
+        String pathToFile = currentFile;
+        int result = jFileChooser.showOpenDialog(jmiOpen);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = jFileChooser.getSelectedFile();
+            pathToFile = selectedFile.getAbsolutePath();
+            changeFilePathOnFrame(view);
+        }
 
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(pathToFile))) {
             view.getTextArea().setText("");
@@ -47,71 +48,81 @@ public class Model {
         }
     }
 
-        public void saveFile (View view, JMenuItem jmiSave){
-            if(currentFile.equals("bez tytułu")){
-                saveAsFile(view,jmiSave);
-            }else {
-                String text = view.getTextArea().getText();
-                try (PrintWriter printWriter = new PrintWriter(currentFile)) {
-                    printWriter.print(text);
-                    fileStatus = FileStatus.SAVED;
-                    changeStatus(view);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+    public void saveFile(View view, JMenuItem jmiSave) {
+        if (currentFile.equals("bez tytułu")) {
+            saveAsFile(view, jmiSave);
+        } else {
+            String text = view.getTextArea().getText();
+            try (PrintWriter printWriter = new PrintWriter(currentFile)) {
+                printWriter.print(text);
+                fileStatus = FileStatus.SAVED;
+                changeStatus(view);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
+    }
 
-        public void saveAsFile(View view, JMenuItem jmiSaveAs){
-            JFileChooser jFileChooser;
-            if(!currentFile.equals("bez tytułu")) {
-                jFileChooser = new JFileChooser(currentFile);
-            } else {
-                jFileChooser = new JFileChooser();
-            }
+    public void saveAsFile(View view, JMenuItem jmiSaveAs) {
+        JFileChooser jFileChooser;
+        if (!currentFile.equals("bez tytułu")) {
+            jFileChooser = new JFileChooser(currentFile);
+        } else {
+            jFileChooser = new JFileChooser();
+        }
         int result = jFileChooser.showSaveDialog(jmiSaveAs);
-        if(result == JFileChooser.APPROVE_OPTION){
+        if (result == JFileChooser.APPROVE_OPTION) {
             File selectedFile = jFileChooser.getSelectedFile();
             String text = view.getTextArea().getText();
             String pathToFileToSave = selectedFile.getAbsolutePath();
-            try(PrintWriter printWriter = new PrintWriter(pathToFileToSave)){
+            try (PrintWriter printWriter = new PrintWriter(pathToFileToSave)) {
                 printWriter.print(text);
                 fileStatus = FileStatus.SAVED;
                 currentFile = pathToFileToSave;
                 changeStatus(view);
                 changeFilePathOnFrame(view);
-            }catch (IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        }
-
-        public void changeFilePathOnFrame(View view){
-            view.getjFrame().setTitle(name + " - " + currentFile);
-        }
-
-        public void changeStatus (View view){
-            view.getStatus().setText(fileStatus.getStatusValue());
-        }
-
-        public String getName () {
-            return name;
-        }
-
-        public String getCurrentFile () {
-            return currentFile;
-        }
-
-        public void setCurrentFile (String currentFile){
-            this.currentFile = currentFile;
-        }
-
-        public FileStatus getFileStatus () {
-            return fileStatus;
-        }
-
-        public void setFileStatus (FileStatus fileStatus,View view){
-            this.fileStatus = fileStatus;
-            changeStatus(view);
-        }
     }
+
+    public void changeFilePathOnFrame(View view) {
+        view.getjFrame().setTitle(name + " - " + currentFile);
+    }
+
+    public void changeStatus(View view) {
+        view.getStatus().setText(fileStatus.getStatusValue());
+    }
+
+    public void changeSizeOnDown(View view, int size){
+        view.getSize().setText("" + size);
+    }
+
+    public void changeBackgroundColorIconOnDown(View view, Color color){
+        view.getBackgroundColorIcon().setColor(color);
+        view.getjFrame().repaint();
+    }
+
+    public void changeTextColorIconOnDown(View view, Color color){
+        view.getTextColorIcon().setColor(color);
+        view.getjFrame().repaint();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getCurrentFile() {
+        return currentFile;
+    }
+
+    public FileStatus getFileStatus() {
+        return fileStatus;
+    }
+
+    public void setFileStatus(FileStatus fileStatus, View view) {
+        this.fileStatus = fileStatus;
+        changeStatus(view);
+    }
+}

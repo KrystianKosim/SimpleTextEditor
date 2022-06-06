@@ -11,6 +11,9 @@ public class View {
     private JMenuItem jmiSave;
     private JMenuItem jmiSaveAs;
     private JMenuItem jmiExit;
+    private JMenuItem jmiPraca;
+    private JMenuItem jmiDom;
+    private JMenuItem jmiSzkola;
     private JMenuBar jmbEdit;
     private JMenuBar jmbOptions;
     private JPanel mainPanel;
@@ -19,10 +22,12 @@ public class View {
     private JPanel southPanel;
     private JPanel southRightPanel;
     private JLabel status;
+    private OvalIcon textColorIcon;
+    private OvalIcon backgroundColorIcon;
     private JPanel southLeftPanel;
     private JLabel textColor;
     private JLabel backgroundColor;
-    private JLabel color;
+    private JLabel size;
     private JMenuItem[] jMenuItemsOptionsForeground;
     private JMenuItem[] jMenutItemsOptionsBackground;
     private JMenuItem[] jMenuItemsOptionsFontSize;
@@ -61,12 +66,17 @@ public class View {
         southRightPanel.add(status);
 
         southLeftPanel = new JPanel();
-        textColor = new JLabel("Text Color");
+        textColorIcon = new OvalIcon(8,8 ,Color.BLACK);
+        textColor = new JLabel("fg");
+        textColor.setIcon(textColorIcon);
+
         southLeftPanel.add(textColor);
-        backgroundColor = new JLabel("Background Color");
+        backgroundColorIcon = new OvalIcon(8,8,Color.WHITE);
+        backgroundColor = new JLabel("bg");
+        backgroundColor.setIcon(backgroundColorIcon);
         southLeftPanel.add(backgroundColor);
-        color = new JLabel("Color ");
-        southLeftPanel.add(color);
+        size = new JLabel("" +14);
+        southLeftPanel.add(size);
 
         southPanel.add(southLeftPanel, BorderLayout.WEST);
         southPanel.add(southRightPanel, BorderLayout.EAST);
@@ -113,9 +123,9 @@ public class View {
         JMenu jmEdit = new JMenu("Edit");
         JMenu jmAdresy = new JMenu("Adresy");
 
-        JMenuItem jmiPraca = new JMenuItem("Praca");
-        JMenuItem jmiDom = new JMenuItem("Dom");
-        JMenuItem jmiSzkola = new JMenuItem("Szkola");
+        jmiPraca = new JMenuItem("Praca");
+        jmiDom = new JMenuItem("Dom");
+        jmiSzkola = new JMenuItem("Szkola");
         jmbEdit.add(jmEdit);
         jmEdit.add(jmAdresy);
         jmAdresy.add(jmiPraca);
@@ -140,13 +150,13 @@ public class View {
     private JMenu getJMenutFontSize() {
         int[] sizes = getSizesOfFont();
         JMenu jMenu = new JMenu("Font Size");
-        JMenuItem [] tab = new JMenuItem[0];
+        JMenuItem[] tab = new JMenuItem[0];
         for (int i = 0; i < sizes.length; i++) {
             int size = sizes[i];
             JMenuItem jMenuItem = new JMenuItem("" + size + " pts");
             Font font = new Font(null, 0, size);
             jMenuItem.setFont(font);
-            tab = addItemToTab(tab,jMenuItem);
+            tab = addItemToTab(tab, jMenuItem);
             jMenu.add(jMenuItem);
         }
         jMenuItemsOptionsFontSize = tab;
@@ -157,13 +167,15 @@ public class View {
         Color[] colors = getColorsValue();
         String[] strings = getNamesOfColorMenuItems();
         JMenu jMenu = new JMenu("Foreground");
-        JMenuItem [] tab = new JMenuItem[0];
+        JMenuItem[] tab = new JMenuItem[0];
         for (int i = 0; i < colors.length; i++) {
             String text = strings[i];
             Color color = colors[i];
             JMenuItem jMenuItem = new JMenuItem(text);
+            OvalIcon ovalIcon = new OvalIcon(8,8,color);
+            jMenuItem.setIcon(ovalIcon);
             jMenuItem.setForeground(color);
-            tab = addItemToTab(tab,jMenuItem);
+            tab = addItemToTab(tab, jMenuItem);
             jMenu.add(jMenuItem);
         }
         jMenuItemsOptionsForeground = tab;
@@ -174,13 +186,15 @@ public class View {
         Color[] colors = getColorsValue();
         String[] strings = getNamesOfColorMenuItems();
         JMenu jMenu = new JMenu("Background");
-        JMenuItem [] tab = new JMenuItem[0];
+        JMenuItem[] tab = new JMenuItem[0];
         for (int i = 0; i < colors.length; i++) {
             String text = strings[i];
             Color color = colors[i];
             JMenuItem jMenuItem = new JMenuItem(text);
+            OvalIcon ovalIcon = new OvalIcon(8,8,color);
+            jMenuItem.setIcon(ovalIcon);
             jMenuItem.setForeground(color);
-            tab = addItemToTab(tab,jMenuItem);
+            tab = addItemToTab(tab, jMenuItem);
             jMenu.add(jMenuItem);
         }
         jMenutItemsOptionsBackground = tab;
@@ -189,7 +203,7 @@ public class View {
 
     private static JMenuItem[] addItemToTab(JMenuItem[] tab, JMenuItem jMenuItem) {
         int lengthOfNewTab = tab.length + 1;
-        if(tab.length != 0) {
+        if (tab.length != 0) {
             JMenuItem[] replacementTab = new JMenuItem[lengthOfNewTab];
             for (int i = 0; i < tab.length; i++) {
                 replacementTab[i] = tab[i];
@@ -243,12 +257,52 @@ public class View {
         return jmiSaveAs;
     }
 
-    public JMenuItem getJmiExit(){
+    public JMenuItem getJmiExit() {
         return jmiExit;
     }
 
     public JTextArea getTextArea() {
         return textArea;
+    }
+
+    public JMenuItem getJmiPraca() {
+        return jmiPraca;
+    }
+
+    public void setJmiPraca(JMenuItem jmiPraca) {
+        this.jmiPraca = jmiPraca;
+    }
+
+    public JMenuItem getJmiDom() {
+        return jmiDom;
+    }
+
+    public void setJmiDom(JMenuItem jmiDom) {
+        this.jmiDom = jmiDom;
+    }
+
+    public JMenuItem getJmiSzkola() {
+        return jmiSzkola;
+    }
+
+    public void setJmiSzkola(JMenuItem jmiSzkola) {
+        this.jmiSzkola = jmiSzkola;
+    }
+
+    public OvalIcon getTextColorIcon() {
+        return textColorIcon;
+    }
+
+    public void setTextColorIcon(OvalIcon textColorIcon) {
+        this.textColorIcon = textColorIcon;
+    }
+
+    public OvalIcon getBackgroundColorIcon() {
+        return backgroundColorIcon;
+    }
+
+    public void setBackgroundColorIcon(OvalIcon backgroundColorIcon) {
+        this.backgroundColorIcon = backgroundColorIcon;
     }
 
     public JFrame getjFrame() {
@@ -375,12 +429,12 @@ public class View {
         this.backgroundColor = backgroundColor;
     }
 
-    public JLabel getColor() {
-        return color;
+    public JLabel getSize() {
+        return size;
     }
 
-    public void setColor(JLabel color) {
-        this.color = color;
+    public void setSize(JLabel size) {
+        this.size = size;
     }
 
     public void setjMenuItemsOptionsForeground(JMenuItem[] jMenuItemsOptionsForeground) {

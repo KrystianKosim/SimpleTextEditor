@@ -26,26 +26,30 @@ public class Controller {
         for (int i = 0; i < tabForeground.length; i++) {
             JMenuItem jMenuItem = tabForeground[i];
             Color color = jMenuItem.getForeground();
-            jMenuItem.addActionListener((e ->
-                    view.getTextArea().setForeground(color)
-            ));
+            jMenuItem.addActionListener((e -> {
+                view.getTextArea().setForeground(color);
+                model.changeTextColorIconOnDown(view,color);
+            }));
         }
 
         JMenuItem[] tabBackground = view.getjMenutItemsOptionsBackground();
         for (int i = 0; i < tabBackground.length; i++) {
             JMenuItem jMenuItem = tabBackground[i];
             Color color = jMenuItem.getForeground();
-            jMenuItem.addActionListener((e) ->
-                    view.getTextArea().setBackground(color)
-            );
+            jMenuItem.addActionListener((e) -> {
+                view.getTextArea().setBackground(color);
+                model.changeBackgroundColorIconOnDown(view,color);
+            });
         }
 
         JMenuItem[] tabFontSizes = view.getjMenuItemsOptionsFontSize();
         for (int i = 0; i < tabFontSizes.length; i++) {
             JMenuItem jMenuItem = tabFontSizes[i];
             Font font = jMenuItem.getFont();
-            jMenuItem.addActionListener((e ->
-                    view.getTextArea().setFont(font)
+            jMenuItem.addActionListener((e -> {
+                view.getTextArea().setFont(font);
+                model.changeSizeOnDown(view, font.getSize());
+            }
             ));
         }
 
@@ -58,7 +62,7 @@ public class Controller {
         JMenuItem jmiSave = view.getJmiSave();
         jmiSave.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK));
         jmiSave.addActionListener(e ->
-            model.saveFile(view,jmiSave)
+                model.saveFile(view, jmiSave)
         );
 
         JMenuItem jmiSaveAs = view.getJmiSaveAs();
@@ -73,20 +77,35 @@ public class Controller {
                 System.exit(1)
         );
 
-
         view.getTextArea().getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                model.setFileStatus(FileStatus.MODIFIED,view);
+                model.setFileStatus(FileStatus.MODIFIED, view);
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                model.setFileStatus(FileStatus.MODIFIED,view);
+                model.setFileStatus(FileStatus.MODIFIED, view);
             }
+
             @Override
             public void changedUpdate(DocumentEvent e) {
             }
+        });
+        JMenuItem jmiPraca = view.getJmiPraca();
+//        jmiPraca.setAccelerator(KeyStroke.getKeyStroke());
+        jmiPraca.addActionListener(e ->
+                System.out.println("jmi Praca dodano!")
+        );
+
+        JMenuItem jmiDom = view.getJmiDom();
+        jmiDom.addActionListener(e -> {
+            System.out.println("jmi Dom dodano");
+        });
+
+        JMenuItem jmiSzkola = view.getJmiSzkola();
+        jmiSzkola.addActionListener(e -> {
+            System.out.println("jmi szkola dodano");
         });
     }
 }
