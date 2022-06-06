@@ -107,12 +107,13 @@ public class View {
         jmiOpen = new JMenuItem("Open");
         jmiSave = new JMenuItem("Save");
         jmiSaveAs = new JMenuItem("Save As");
-
+        JSeparator jSeparator = new JSeparator();
+        jSeparator.setBorder(BorderFactory.createLineBorder(Color.RED));
         jmiExit = new JMenuItem("Exit");
-        jmiExit.setBorder(BorderFactory.createLineBorder(Color.RED));
         jmFile.add(jmiOpen);
         jmFile.add(jmiSave);
         jmFile.add(jmiSaveAs);
+        jmFile.add(jSeparator);
         jmFile.add(jmiExit);
         jmbFile.add(jmFile);
 
