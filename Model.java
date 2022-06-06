@@ -8,8 +8,10 @@ import java.io.IOException;
 public class Model {
     private String currentFile;
     private FileStatus fileStatus;
+    private String name;
 
-    public Model() {
+    public Model(String name) {
+        this.name = name;
         currentFile = "bez tytułu";
         fileStatus = FileStatus.NEW;
     }
@@ -29,8 +31,16 @@ public class Model {
         }
     }
 
-    public void saveFile(){
+    public void changeFilePathOnFram(View view){
+        view.getjFrame().setTitle(name + " - " + currentFile);
+    }
 
+    public void changeStatus(View view){
+        view.getStatus().setText(fileStatus.getStatusValue());
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String getCurrentFile() {

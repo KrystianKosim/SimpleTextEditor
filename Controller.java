@@ -17,7 +17,7 @@ public class Controller {
 
     public void initView() {
         view.getStatus().setText(model.getFileStatus().getStatusValue());
-        view.getjFrame().setTitle("Prosty edytor - " + model.getCurrentFile());
+        view.getjFrame().setTitle(model.getName() + " - " + model.getCurrentFile());
     }
 
     public void initController() {
@@ -55,7 +55,8 @@ public class Controller {
             int result = jFileChooser.showOpenDialog(jmiOpen);
             if (result == JFileChooser.APPROVE_OPTION) {
                 File selectedFile = jFileChooser.getSelectedFile();
-                System.out.println("Selected file: " + selectedFile.getAbsolutePath());
+                model.setCurrentFile(selectedFile.getAbsolutePath());
+                model.changeFilePathOnFram(view);
                 model.openFile(selectedFile.getAbsolutePath(), textArea);
             }
         }));
@@ -65,12 +66,23 @@ public class Controller {
             String text = view.getTextArea().getText();
             try(PrintWriter printWriter = new PrintWriter(model.getCurrentFile())){
                 printWriter.print(text);
+                model.setFileStatus(FileStatus.SAVED);
+                model.changeStatus(view);
             }catch (IOException ex){
                 ex.printStackTrace();
             }
         }));
 
         JMenuItem jmiSaveAs = view.getJmiSaveAs();
+        jmiSaveAs.addActionListener((e) -> {
+            String text = view.getTextArea().getText();
+            JFileChooser jFileChooser = new JFileChooser();
+            int result = jFileChooser.showOpenDialog(jmiSaveAs);
+            if(result == JFileChooser.APPROVE_OPTION){
+                File selectedFile = jFileChooser.getSelectedFile();
+                model.setCurrentFile(selectedFile.getAbsolutePath());
+            }
+        });
 
         JMenuItem jmiExit = view.getJmiExit();
         jmiExit.addActionListener((e) ->
