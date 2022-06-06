@@ -45,7 +45,7 @@ public class View {
 
         centrePanel = new JPanel();
         centrePanel.setLayout(new BorderLayout());
-        textArea = getTextArea(centrePanel);
+        textArea = createTextArea(centrePanel);
 
 
         jmbFile = getFileBar();
@@ -91,7 +91,7 @@ public class View {
         jFrame.setVisible(true);
     }
 
-    public static JTextArea getTextArea(JPanel centrePanel) {
+    public static JTextArea createTextArea(JPanel centrePanel) {
         JTextArea textArea = new JTextArea();
         textArea.setText("Obszar do pisania");
         JScrollPane scrollPane = new JScrollPane(textArea);
@@ -235,6 +235,12 @@ public class View {
         };
     }
 
+
+    public JTextArea getTextArea() {
+        return textArea;
+    }
+
+
     public JMenuItem[] getjMenuItemsOptionsForeground() {
         return jMenuItemsOptionsForeground;
     }
@@ -261,10 +267,6 @@ public class View {
 
     public JMenuItem getJmiExit() {
         return jmiExit;
-    }
-
-    public JTextArea getTextArea() {
-        return textArea;
     }
 
     public JMenuItem getJmiPraca() {
