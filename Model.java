@@ -31,7 +31,8 @@ public class Model {
 
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(pathToFile))) {
             view.getTextArea().setText("");
-            JTextArea textArea = view.getTextArea();
+            JTextArea textArea;
+            textArea = view.getTextArea();
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 String textToArea = textArea.getText() + '\n' + line;
@@ -46,9 +47,9 @@ public class Model {
         }
     }
 
-        public void saveFile (View view){
+        public void saveFile (View view, JMenuItem jmiSave){
             if(currentFile.equals("bez tytułu")){
-                System.out.println("Uruchomienie save As");
+                saveAsFile(view,jmiSave);
             }else {
                 String text = view.getTextArea().getText();
                 try (PrintWriter printWriter = new PrintWriter(currentFile)) {
@@ -109,7 +110,8 @@ public class Model {
             return fileStatus;
         }
 
-        public void setFileStatus (FileStatus fileStatus){
+        public void setFileStatus (FileStatus fileStatus,View view){
             this.fileStatus = fileStatus;
+            changeStatus(view);
         }
     }

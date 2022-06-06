@@ -42,6 +42,7 @@ public class View {
         centrePanel.setLayout(new BorderLayout());
         textArea = getTextArea(centrePanel);
 
+
         jmbFile = getFileBar();
 
         northPanel.add(jmbFile);

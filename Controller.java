@@ -1,11 +1,11 @@
 package Zajecia11;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
-
-import static java.awt.event.ActionEvent.CTRL_MASK;
 
 public class Controller {
     private View view;
@@ -49,8 +49,6 @@ public class Controller {
             ));
         }
 
-        /** here */
-
         JMenuItem jmiOpen = view.getJmiOpen();
         jmiOpen.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_DOWN_MASK));
         jmiOpen.addActionListener(e ->
@@ -60,7 +58,7 @@ public class Controller {
         JMenuItem jmiSave = view.getJmiSave();
         jmiSave.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK));
         jmiSave.addActionListener(e ->
-            model.saveFile(view)
+            model.saveFile(view,jmiSave)
         );
 
         JMenuItem jmiSaveAs = view.getJmiSaveAs();
@@ -74,5 +72,21 @@ public class Controller {
         jmiExit.addActionListener(e ->
                 System.exit(1)
         );
+
+
+        view.getTextArea().getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                model.setFileStatus(FileStatus.MODIFIED,view);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                model.setFileStatus(FileStatus.MODIFIED,view);
+            }
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+            }
+        });
     }
 }
