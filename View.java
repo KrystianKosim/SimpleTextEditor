@@ -107,6 +107,7 @@ public class View {
         jmiOpen = new JMenuItem("Open");
         jmiSave = new JMenuItem("Save");
         jmiSaveAs = new JMenuItem("Save As");
+
         jmiExit = new JMenuItem("Exit");
         jmiExit.setBorder(BorderFactory.createLineBorder(Color.RED));
         jmFile.add(jmiOpen);
@@ -150,10 +151,10 @@ public class View {
     private JMenu getJMenutFontSize() {
         int[] sizes = getSizesOfFont();
         JMenu jMenu = new JMenu("Font Size");
-        JMenuItem[] tab = new JMenuItem[0];
+        JRadioButtonMenuItem[] tab = new JRadioButtonMenuItem[0];
         for (int i = 0; i < sizes.length; i++) {
             int size = sizes[i];
-            JMenuItem jMenuItem = new JMenuItem("" + size + " pts");
+            JRadioButtonMenuItem jMenuItem = new JRadioButtonMenuItem("" + size + " pts");
             Font font = new Font(null, 0, size);
             jMenuItem.setFont(font);
             tab = addItemToTab(tab, jMenuItem);
@@ -167,11 +168,11 @@ public class View {
         Color[] colors = getColorsValue();
         String[] strings = getNamesOfColorMenuItems();
         JMenu jMenu = new JMenu("Foreground");
-        JMenuItem[] tab = new JMenuItem[0];
+        JRadioButtonMenuItem[] tab = new JRadioButtonMenuItem[0];
         for (int i = 0; i < colors.length; i++) {
             String text = strings[i];
             Color color = colors[i];
-            JMenuItem jMenuItem = new JMenuItem(text);
+            JRadioButtonMenuItem jMenuItem = new JRadioButtonMenuItem(text);
             OvalIcon ovalIcon = new OvalIcon(8, 8, color);
             jMenuItem.setIcon(ovalIcon);
             jMenuItem.setForeground(color);
@@ -186,11 +187,11 @@ public class View {
         Color[] colors = getColorsValue();
         String[] strings = getNamesOfColorMenuItems();
         JMenu jMenu = new JMenu("Background");
-        JMenuItem[] tab = new JMenuItem[0];
+        JRadioButtonMenuItem[] tab = new JRadioButtonMenuItem[0];
         for (int i = 0; i < colors.length; i++) {
             String text = strings[i];
             Color color = colors[i];
-            JMenuItem jMenuItem = new JMenuItem(text);
+            JRadioButtonMenuItem jMenuItem = new JRadioButtonMenuItem(text);
             OvalIcon ovalIcon = new OvalIcon(8, 8, color);
             jMenuItem.setIcon(ovalIcon);
             jMenuItem.setForeground(color);
@@ -201,17 +202,17 @@ public class View {
         return jMenu;
     }
 
-    private static JMenuItem[] addItemToTab(JMenuItem[] tab, JMenuItem jMenuItem) {
+    private static JRadioButtonMenuItem[] addItemToTab(JRadioButtonMenuItem[] tab, JRadioButtonMenuItem jMenuItem) {
         int lengthOfNewTab = tab.length + 1;
         if (tab.length != 0) {
-            JMenuItem[] replacementTab = new JMenuItem[lengthOfNewTab];
+            JRadioButtonMenuItem[] replacementTab = new JRadioButtonMenuItem[lengthOfNewTab];
             for (int i = 0; i < tab.length; i++) {
                 replacementTab[i] = tab[i];
             }
             replacementTab[lengthOfNewTab - 1] = jMenuItem;
             return replacementTab;
         } else {
-            return new JMenuItem[]{jMenuItem};
+            return new JRadioButtonMenuItem[]{jMenuItem};
         }
     }
 

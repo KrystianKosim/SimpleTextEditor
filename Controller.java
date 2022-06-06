@@ -99,7 +99,7 @@ public class Controller {
             }
         });
         JMenuItem jmiWork = view.getJmiPraca();
-        jmiWork.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_DOWN_MASK));
+        jmiWork.setAccelerator(KeyStroke.getKeyStroke("control shift P"));
         jmiWork.addActionListener(e -> {
             JTextArea textArea = view.getTextArea();
             int currentPosition = textArea.getCaretPosition();
@@ -107,6 +107,7 @@ public class Controller {
         });
 
         JMenuItem jmiHome = view.getJmiDom();
+        jmiHome.setAccelerator(KeyStroke.getKeyStroke("control shift D"));
         jmiHome.addActionListener(e -> {
             JTextArea textArea = view.getTextArea();
             int currentPosition = textArea.getCaretPosition();
@@ -115,6 +116,7 @@ public class Controller {
         });
 
         JMenuItem jmiSchool = view.getJmiSzkola();
+        jmiSchool.setAccelerator(KeyStroke.getKeyStroke("control shift S"));
         jmiSchool.addActionListener(e -> {
             JTextArea textArea = view.getTextArea();
             int currentPosition = textArea.getCaretPosition();
