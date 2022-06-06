@@ -66,16 +66,16 @@ public class View {
         southRightPanel.add(status);
 
         southLeftPanel = new JPanel();
-        textColorIcon = new OvalIcon(8,8 ,Color.BLACK);
+        textColorIcon = new OvalIcon(8, 8, Color.BLACK);
         textColor = new JLabel("fg");
         textColor.setIcon(textColorIcon);
 
         southLeftPanel.add(textColor);
-        backgroundColorIcon = new OvalIcon(8,8,Color.WHITE);
+        backgroundColorIcon = new OvalIcon(8, 8, Color.WHITE);
         backgroundColor = new JLabel("bg");
         backgroundColor.setIcon(backgroundColorIcon);
         southLeftPanel.add(backgroundColor);
-        size = new JLabel("" +14);
+        size = new JLabel("" + 14);
         southLeftPanel.add(size);
 
         southPanel.add(southLeftPanel, BorderLayout.WEST);
@@ -172,7 +172,7 @@ public class View {
             String text = strings[i];
             Color color = colors[i];
             JMenuItem jMenuItem = new JMenuItem(text);
-            OvalIcon ovalIcon = new OvalIcon(8,8,color);
+            OvalIcon ovalIcon = new OvalIcon(8, 8, color);
             jMenuItem.setIcon(ovalIcon);
             jMenuItem.setForeground(color);
             tab = addItemToTab(tab, jMenuItem);
@@ -191,7 +191,7 @@ public class View {
             String text = strings[i];
             Color color = colors[i];
             JMenuItem jMenuItem = new JMenuItem(text);
-            OvalIcon ovalIcon = new OvalIcon(8,8,color);
+            OvalIcon ovalIcon = new OvalIcon(8, 8, color);
             jMenuItem.setIcon(ovalIcon);
             jMenuItem.setForeground(color);
             tab = addItemToTab(tab, jMenuItem);
@@ -269,183 +269,32 @@ public class View {
         return jmiPraca;
     }
 
-    public void setJmiPraca(JMenuItem jmiPraca) {
-        this.jmiPraca = jmiPraca;
-    }
-
     public JMenuItem getJmiDom() {
         return jmiDom;
-    }
-
-    public void setJmiDom(JMenuItem jmiDom) {
-        this.jmiDom = jmiDom;
     }
 
     public JMenuItem getJmiSzkola() {
         return jmiSzkola;
     }
 
-    public void setJmiSzkola(JMenuItem jmiSzkola) {
-        this.jmiSzkola = jmiSzkola;
-    }
-
     public OvalIcon getTextColorIcon() {
         return textColorIcon;
-    }
-
-    public void setTextColorIcon(OvalIcon textColorIcon) {
-        this.textColorIcon = textColorIcon;
     }
 
     public OvalIcon getBackgroundColorIcon() {
         return backgroundColorIcon;
     }
 
-    public void setBackgroundColorIcon(OvalIcon backgroundColorIcon) {
-        this.backgroundColorIcon = backgroundColorIcon;
-    }
-
     public JFrame getjFrame() {
         return jFrame;
-    }
-
-    public void setjFrame(JFrame jFrame) {
-        this.jFrame = jFrame;
-    }
-
-    public void setTextArea(JTextArea textArea) {
-        this.textArea = textArea;
-    }
-
-    public JMenuBar getJmbFile() {
-        return jmbFile;
-    }
-
-    public void setJmbFile(JMenuBar jmbFile) {
-        this.jmbFile = jmbFile;
-    }
-
-    public void setJmiOpen(JMenuItem jmiOpen) {
-        this.jmiOpen = jmiOpen;
-    }
-
-    public void setJmiSave(JMenuItem jmiSave) {
-        this.jmiSave = jmiSave;
-    }
-
-    public void setJmiSaveAs(JMenuItem jmiSaveAs) {
-        this.jmiSaveAs = jmiSaveAs;
-    }
-
-    public void setJmiExit(JMenuItem jmiExit) {
-        this.jmiExit = jmiExit;
-    }
-
-    public JMenuBar getJmbEdit() {
-        return jmbEdit;
-    }
-
-    public void setJmbEdit(JMenuBar jmbEdit) {
-        this.jmbEdit = jmbEdit;
-    }
-
-    public JMenuBar getJmbOptions() {
-        return jmbOptions;
-    }
-
-    public void setJmbOptions(JMenuBar jmbOptions) {
-        this.jmbOptions = jmbOptions;
-    }
-
-    public JPanel getMainPanel() {
-        return mainPanel;
-    }
-
-    public void setMainPanel(JPanel mainPanel) {
-        this.mainPanel = mainPanel;
-    }
-
-    public JPanel getNorthPanel() {
-        return northPanel;
-    }
-
-    public void setNorthPanel(JPanel northPanel) {
-        this.northPanel = northPanel;
-    }
-
-    public JPanel getCentrePanel() {
-        return centrePanel;
-    }
-
-    public void setCentrePanel(JPanel centrePanel) {
-        this.centrePanel = centrePanel;
-    }
-
-    public JPanel getSouthPanel() {
-        return southPanel;
-    }
-
-    public void setSouthPanel(JPanel southPanel) {
-        this.southPanel = southPanel;
-    }
-
-    public JPanel getSouthRightPanel() {
-        return southRightPanel;
-    }
-
-    public void setSouthRightPanel(JPanel southRightPanel) {
-        this.southRightPanel = southRightPanel;
     }
 
     public JLabel getStatus() {
         return status;
     }
 
-    public void setStatus(JLabel status) {
-        this.status = status;
-    }
-
-    public JPanel getSouthLeftPanel() {
-        return southLeftPanel;
-    }
-
-    public void setSouthLeftPanel(JPanel southLeftPanel) {
-        this.southLeftPanel = southLeftPanel;
-    }
-
-    public JLabel getTextColor() {
-        return textColor;
-    }
-
-    public void setTextColor(JLabel textColor) {
-        this.textColor = textColor;
-    }
-
-    public JLabel getBackgroundColor() {
-        return backgroundColor;
-    }
-
-    public void setBackgroundColor(JLabel backgroundColor) {
-        this.backgroundColor = backgroundColor;
-    }
-
     public JLabel getSize() {
         return size;
     }
 
-    public void setSize(JLabel size) {
-        this.size = size;
-    }
-
-    public void setjMenuItemsOptionsForeground(JMenuItem[] jMenuItemsOptionsForeground) {
-        this.jMenuItemsOptionsForeground = jMenuItemsOptionsForeground;
-    }
-
-    public void setjMenutItemsOptionsBackground(JMenuItem[] jMenutItemsOptionsBackground) {
-        this.jMenutItemsOptionsBackground = jMenutItemsOptionsBackground;
-    }
-
-    public void setjMenuItemsOptionsFontSize(JMenuItem[] jMenuItemsOptionsFontSize) {
-        this.jMenuItemsOptionsFontSize = jMenuItemsOptionsFontSize;
-    }
 }

@@ -10,10 +10,16 @@ import java.awt.event.KeyEvent;
 public class Controller {
     private View view;
     private Model model;
+    private String workAddress;
+    private String homeAddress;
+    private String schoolAddress;
 
-    public Controller(View view, Model model) {
+    public Controller(View view, Model model,String workAddress, String homeAddress, String schoolAddress) {
         this.view = view;
         this.model = model;
+        this.workAddress = workAddress;
+        this.homeAddress = homeAddress;
+        this.schoolAddress = schoolAddress;
     }
 
     public void initView() {
@@ -28,7 +34,7 @@ public class Controller {
             Color color = jMenuItem.getForeground();
             jMenuItem.addActionListener((e -> {
                 view.getTextArea().setForeground(color);
-                model.changeTextColorIconOnDown(view,color);
+                model.changeTextColorIconOnDown(view, color);
             }));
         }
 
@@ -38,7 +44,7 @@ public class Controller {
             Color color = jMenuItem.getForeground();
             jMenuItem.addActionListener((e) -> {
                 view.getTextArea().setBackground(color);
-                model.changeBackgroundColorIconOnDown(view,color);
+                model.changeBackgroundColorIconOnDown(view, color);
             });
         }
 
@@ -92,20 +98,27 @@ public class Controller {
             public void changedUpdate(DocumentEvent e) {
             }
         });
-        JMenuItem jmiPraca = view.getJmiPraca();
-//        jmiPraca.setAccelerator(KeyStroke.getKeyStroke());
-        jmiPraca.addActionListener(e ->
-                System.out.println("jmi Praca dodano!")
-        );
-
-        JMenuItem jmiDom = view.getJmiDom();
-        jmiDom.addActionListener(e -> {
-            System.out.println("jmi Dom dodano");
+        JMenuItem jmiWork = view.getJmiPraca();
+        jmiWork.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_DOWN_MASK));
+        jmiWork.addActionListener(e -> {
+            JTextArea textArea = view.getTextArea();
+            int currentPosition = textArea.getCaretPosition();
+            textArea.insert(workAddress, currentPosition);
         });
 
-        JMenuItem jmiSzkola = view.getJmiSzkola();
-        jmiSzkola.addActionListener(e -> {
-            System.out.println("jmi szkola dodano");
+        JMenuItem jmiHome = view.getJmiDom();
+        jmiHome.addActionListener(e -> {
+            JTextArea textArea = view.getTextArea();
+            int currentPosition = textArea.getCaretPosition();
+            textArea.insert(homeAddress, currentPosition);
+
+        });
+
+        JMenuItem jmiSchool = view.getJmiSzkola();
+        jmiSchool.addActionListener(e -> {
+            JTextArea textArea = view.getTextArea();
+            int currentPosition = textArea.getCaretPosition();
+            textArea.insert(schoolAddress, currentPosition);
         });
     }
 }

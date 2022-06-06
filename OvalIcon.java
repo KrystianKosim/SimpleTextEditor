@@ -32,26 +32,6 @@ public class OvalIcon implements Icon {
         return heigh;
     }
 
-    public int getWidth() {
-        return width;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
-    public int getHeigh() {
-        return heigh;
-    }
-
-    public void setHeigh(int heigh) {
-        this.heigh = heigh;
-    }
-
-    public Color getColor() {
-        return color;
-    }
-
     public void setColor(Color color) {
         this.color = color;
     }
